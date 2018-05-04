@@ -1,4 +1,6 @@
 class SnackBox
+
+  attr_reader :data
   SNACK_BOX_DATA = {
     1 => {
       "bone" => {
@@ -109,12 +111,24 @@ class MetaCorgiSnacks
     @box_id = box_id
   end
 
-  def method_missing(name, *args)
-    # Your code goes here...
-  end
+  # def method_missing(name, *args)
+  #   get_info = "get_#{name}_info"
+  #   get_tasty = "get_#{name}_tastiness"
+  #
+  #   info = @snack_box.send(get_info, @box_id)
+  #   tastiness = @snack_box.send(get_tasty, @box_id)
+  #   result = "#{name}: #{info}: #{tastiness} "
+  #   tastiness > 30 ? "* #{result}" : result
+  # end
 
 
   def self.define_snack(name)
-    # Your code goes here...
+    define_method(name) do
+      info = @snack_box.send("get_#{name}_info", @box_id)
+      tastiness = @snack_box.send("get_#{name}_tastiness", @box_id)
+      display_name = "#{name.split('_').map(&:capitalize).join(' ')}"
+      result = "#{display_name}: #{info}: #{tastiness}"
+      tastiness > 30 ? "* #{result}" : result
+    end
   end
 end
