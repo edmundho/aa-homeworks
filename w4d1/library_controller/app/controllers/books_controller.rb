@@ -1,19 +1,32 @@
 class BooksController < ApplicationController
   def index
     @books = Book.all
-    render :index
+    # render :index
   end
 
   def new
-    # your code here
+    render :new
   end
 
   def create
-    # your code here
+    new_book = Book.new(book_params)
+    new_book.save
+    redirect_to books_url
+    # solutions:
+    # if new_book.save
+    #   redirect_to books_url
+    # else
+    #   flash.now[:errors] = book.errors.full_messages
+    #   render :new
+    # end
   end
 
   def destroy
-    # your code here
+    book = Book.find_by(id: params[:id])
+    # Book.delete(book.id)
+    book.destroy
+    redirect_to books_url
+    # fail
   end
 
   private
