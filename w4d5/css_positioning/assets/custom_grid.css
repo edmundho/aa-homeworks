@@ -41,32 +41,13 @@ with a class attribute containing 'col-' */
 
 /* CSS Day 6 media queries */
 @media all and (max-width: 800px) {
-  aside {
-    width: 100%;
-  }
-
-  nav {
+  nav, aside, textarea, [class*='col-'] {
     float: none;
-  }
-
-  .col {
-    float: none;
-  }
-
-  .col-1-3 {
-    width: 100%;
-  }
-  
-  .col-2-3 {
     width: 100%;
   }
 
   header > img {
-    float: none;
+    width: 75%;
   }
 
-  textarea {
-    width: 100%;
-  }
 }
-
