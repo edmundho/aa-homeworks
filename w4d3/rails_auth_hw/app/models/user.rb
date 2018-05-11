@@ -7,7 +7,6 @@ class User < ApplicationRecord
   validates :password, length: { minimum: 6, allow_nil: true }
 
   def password=(password)
-    debugger
     @password = password
     self.password_digest = BCrypt::Password.create(password)
   end
